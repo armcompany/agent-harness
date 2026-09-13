@@ -32,3 +32,12 @@ Allowed phase values: `pending`, `in_progress`, `completed`, `blocked`, `not_app
 - Blockers:
 - Updated:
 
+## Provider handoff
+
+- Active executor/provider/model:
+- Balance or quota signal (sanitized):
+- Handoff urgency: normal | soon | immediate
+- Switch reason:
+- Next model instruction:
+- Unknown in-flight outcomes:
+- Safe return check for preferred provider:

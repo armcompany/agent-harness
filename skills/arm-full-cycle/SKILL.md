@@ -68,6 +68,12 @@ Figma and Stitch are optional visual-creation accelerators, not prerequisites. T
 - If Figma, Stitch, or another MCP is unavailable, continue with the available artifacts and tools. Never invent unknown skill or tool behavior.
 - Choose the route that reduces implementation and review effort without increasing dependencies, visual drift, or token cost. Validate the resulting UI in a browser.
 
+## Provider continuity
+
+When provider discovery, exhausted balance/quota, model unavailability, or cross-executor resumption is relevant, read [provider-continuity.md](references/provider-continuity.md). Discover configured options, evaluate task compatibility, and preserve a handoff checkpoint. Prefer OpenAI, then Kimi, then Claude, then other eligible configured options; explicit user preferences override this default. OpenCode is an executor whose configured provider/model must be identified.
+
+Always check OpenCode first as the preferred verification and recovery coordinator, independently of which provider performs the task. Confirm its actual status and supported control capabilities; its availability is not guaranteed. Automatic switching requires host support or an external controller that survives model failure. This skill supplies the policy, not that controller. If switching is unsupported, report the limitation and provide the available checkpoint without claiming a switch occurred.
+
 ## Skill coordination
 
 `harness-engineering` is the primary doctrine when available; specialist skills augment it and never replace it. Detect availability before invoking any skill.
