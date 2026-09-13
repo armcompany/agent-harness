@@ -5,6 +5,7 @@ root="$(cd "$(dirname "$0")/.." && pwd)"
 required_files=(
   README.md
   skills/arm-full-cycle/SKILL.md
+  skills/arm-full-cycle/scripts/arm-resume
   skills/arm-full-cycle/assets/harness/README.md
   skills/arm-full-cycle/assets/harness/status.md
   skills/arm-full-cycle/assets/harness/decisions/README.md
@@ -31,6 +32,8 @@ for reference in \
   09-implementation.md 10-testing-validation.md 11-ai-mobile.md 12-production.md; do
   required_files+=("skills/arm-full-cycle/references/$reference")
 done
+
+bash -n "$root/skills/arm-full-cycle/scripts/arm-resume"
 
 for file in "${required_files[@]}"; do
   test -f "$root/$file" || { echo "Missing: $file" >&2; exit 1; }

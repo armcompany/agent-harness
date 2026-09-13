@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+project_root="${1:-.}"
+project_root="$(cd "$project_root" && pwd -P)"
+
+if [[ ! -d "$project_root/.git" && ! -f "$project_root/.git" ]]; then
+  echo "No Git repository: $project_root" >&2
+  exit 1
+fi
+
+echo "=== ARM resume check ==="
+echo "Project: $project_root"
+echo
+echo "--- status ---"
+git -C "$project_root" status --short
+echo
+echo "--- diff summary ---"
+git -C "$project_root" diff --stat
+echo
+if [[ -f "$project_root/.harness/status.md" ]]; then
+  echo "--- .harness/status.md ---"
+  sed -n '1,220p' "$project_root/.harness/status.md"
+else
+  echo "No .harness/status.md found; initialize the ARM harness before resuming."
+fi
+echo
+echo "--- prompt for the next model ---"
+cat <<'PROMPT'
+Continue this project from the saved state.
+
+Read the project's instructions and .harness/status.md. Verify the current
+workspace with git status and git diff before changing anything. Continue only
+from the recorded next action; do not repeat completed work. Reconcile any
+unknown in-flight operation before replaying it. Update .harness/status.md at
+each meaningful step and before a provider switch. If the previous model ran
+out of balance, use the provider-continuity policy and preserve the handoff.
+PROMPT
