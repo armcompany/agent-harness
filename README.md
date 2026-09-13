@@ -26,7 +26,7 @@ When starting work in a target project, the skill initializes or resumes `.harne
 
 ## Contents
 
-Provider continuity is documented in `skills/arm-full-cycle/references/provider-continuity.md`: check OpenCode first as the preferred verification and recovery coordinator, discover configured candidates, prefer OpenAI → Kimi → Claude → other eligible options for task execution, preserve progress, and return to the preferred provider at a safe checkpoint. OpenCode candidates are evaluated by their configured provider/model; OpenCode availability and control capabilities must be verified. Automatic discovery, switching, and recovery monitoring require compatible host support or an external controller; this package does not ship that controller.
+Provider continuity is documented in `skills/arm-full-cycle/references/provider-continuity.md`: check OpenCode first as the preferred verification and recovery coordinator, discover configured candidates, prefer OpenAI → Kimi → Claude → other eligible options for task execution, preserve progress, and return to the preferred provider at a safe checkpoint. At 20%, 10%, and especially 5% remaining balance, the agent progressively stops new work and writes a handoff for another model. OpenCode candidates are evaluated by their configured provider/model; OpenCode availability and control capabilities must be verified. Automatic discovery, switching, and recovery monitoring require compatible host support or an external controller; this package does not ship that controller.
 
 - `skills/arm-full-cycle/`: the installable skill and its progressive references.
 - `.harness/`: reusable persistent engineering-state templates.

@@ -70,7 +70,7 @@ Figma and Stitch are optional visual-creation accelerators, not prerequisites. T
 
 ## Provider continuity
 
-When provider discovery, exhausted balance/quota, model unavailability, or cross-executor resumption is relevant, read [provider-continuity.md](references/provider-continuity.md). Discover configured options, evaluate task compatibility, and preserve a handoff checkpoint. Prefer OpenAI, then Kimi, then Claude, then other eligible configured options; explicit user preferences override this default. OpenCode is an executor whose configured provider/model must be identified.
+When provider discovery, exhausted balance/quota, model unavailability, low balance (20%/10%/5%), or cross-executor resumption is relevant, read [provider-continuity.md](references/provider-continuity.md). Discover configured options, evaluate task compatibility, and preserve a handoff checkpoint. Prefer OpenAI, then Kimi, then Claude, then other eligible configured options; explicit user preferences override this default. OpenCode is an executor whose configured provider/model must be identified.
 
 Always check OpenCode first as the preferred verification and recovery coordinator, independently of which provider performs the task. Confirm its actual status and supported control capabilities; its availability is not guaranteed. Automatic switching requires host support or an external controller that survives model failure. This skill supplies the policy, not that controller. If switching is unsupported, report the limitation and provide the available checkpoint without claiming a switch occurred.
 
