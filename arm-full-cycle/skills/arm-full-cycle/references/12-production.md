@@ -157,7 +157,7 @@ For substantial greenfield work execute:
 01 Understand request
 02 Inspect available context
 03 Inspect repository if one exists
-04 Load Harness Engineering
+04 Load Harness Engineering when installed; otherwise inspect installed skills and continue with repository evidence, official documentation, and native capability
 05 Discover/select relevant skills
 06 Understand business
 07 Challenge business assumptions

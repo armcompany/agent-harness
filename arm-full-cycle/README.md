@@ -8,7 +8,19 @@ This is version 1.0.0 of the functional reusable skill. Its approved 109-block m
 
 ## Install and use
 
-Package this repository with your preferred skill distribution workflow, then invoke `arm-full-cycle` for product, design, engineering, audit, or incident work. The skill has no mandatory external-tool dependency: companion skills are detected when available and otherwise their responsibilities are handled normally.
+From the published package:
+
+```sh
+npx skills add armcompany/arm-full-cycle
+```
+
+From a local checkout (verified with skills CLI 1.5.26, which installs `skills/arm-full-cycle/` including `assets/harness/` and `references/`):
+
+```sh
+npx skills add /path/to/arm-full-cycle
+```
+
+Then invoke `arm-full-cycle` for product, design, engineering, audit, or incident work. The skill has no mandatory external-tool dependency: companion skills are detected when available and otherwise their responsibilities are handled normally.
 
 When starting work in a target project, the skill initializes or resumes `.harness/`. Read `.harness/status.md` first to continue the active phase.
 

@@ -57,7 +57,7 @@ grep -q 'Do not mutate a project during AUDIT or RESEARCH' "$root/skills/arm-ful
 grep -q 'after visual direction and the Design System are established' "$root/skills/arm-full-cycle/SKILL.md"
 
 awk '
-  /^[0-9]+\.[[:space:]][A-Z]/ {
+  /^[0-9]+\.[[:space:]]/ && $0 !~ /[a-z]/ {
     section = $1
     sub(/\./, "", section)
     seen[section]++
