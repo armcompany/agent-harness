@@ -11,13 +11,13 @@ This is version 1.0.0 of the functional reusable skill. Its approved 109-block m
 From the published package:
 
 ```sh
-npx skills add armcompany/arm-full-cycle
+npx skills add armcompany/agent-harness
 ```
 
 From a local checkout (verified with skills CLI 1.5.26, which installs `skills/arm-full-cycle/` including `assets/harness/` and `references/`):
 
 ```sh
-npx skills add /path/to/arm-full-cycle
+npx skills add /path/to/agent-harness
 ```
 
 Then invoke `arm-full-cycle` for product, design, engineering, audit, or incident work. The skill has no mandatory external-tool dependency: companion skills are detected when available and otherwise their responsibilities are handled normally.
