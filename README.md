@@ -13,6 +13,8 @@
 
 # ARM Full Cycle
 
+[![skills.sh](https://skills.sh/b/armcompany/agent-harness)](https://www.skills.sh/armcompany/agent-harness/arm-full-cycle)
+
 `arm-full-cycle` is a reusable Product Engineering operating system. It guides work from business context through production readiness while keeping the project state in `.harness/`.
 
 ## Status
