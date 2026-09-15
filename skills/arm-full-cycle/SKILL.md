@@ -26,13 +26,46 @@ The objective is the smallest correct, secure, observable, maintainable solution
 
 ## Persistent state
 
-1. Determine the execution mode.
+1. Determine the execution mode (see **Scope Detection** below).
 2. Check for `.harness/` at the target project root. If absent, initialize it from this installed skill's `assets/harness/` templates.
 3. If present, read `.harness/status.md` and the artifacts for the active phase; resume rather than repeat completed planning.
 4. Update status with `pending`, `in_progress`, `completed`, `blocked`, or `not_applicable`. Record consequential decisions in `.harness/decisions/`.
 5. Plan before implementing greenfield products and large features. Use a proportional fast path for small bugs.
 
 Do not mutate a project during AUDIT or RESEARCH unless the user explicitly requests a change. Record findings in the requested deliverable; create or update `.harness/` only when that persistence work is within the authorized scope.
+
+## Scope Detection
+
+Before loading references, **detect the minimal scope** from repository evidence + user request:
+
+| Signal | Inferred Mode | Modules to Load |
+|--------|---------------|-----------------|
+| New repo, no package.json, user says "build X" | GREENFIELD | 01; 02–04 if UI; 05–12 |
+| Existing product, user says "add feature Y" | FEATURE | 01 (if domain impact); 05,06,07,08 (if affected); 09,10; 02–04 if UI |
+| User says "fix bug Z" or "error in logs" | BUGFIX | 09,10 + affected domain module only |
+| User says "refactor X" or "migrate to Y" | REFACTOR/MIGRATION | 05,06,09,10,12 (if prod risk) |
+| User says "design review" or "architecture" | ARCHITECTURE | 01 (if needed); 05; 06; 07; 08; 12 |
+| User says "audit" or "performance review" | AUDIT/PERFORMANCE | 01 + audited modules + 10 |
+| User says "security review" | SECURITY | 05,06,07,10,12 |
+| User says "incident" or "production down" | PRODUCTION INCIDENT | 08,09,10,12 + affected domain |
+| **Backend-only improvement, no UI, existing repo** | **BACKEND-FOCUSED** | **01 (domain only); 05,06,07,08,09,10,12** |
+| **API/contract change only** | **API-FOCUSED** | **01 (domain); 05,06,07,09,10** |
+
+**Detection algorithm:**
+1. Read repository: `package.json`, `pyproject.toml`, `go.mod`, `Cargo.toml`, `*.sln`, directory structure, existing `.harness/`
+2. Parse user request for keywords: "bug", "fix", "feature", "refactor", "design", "audit", "incident", "backend", "api", "database"
+3. Cross-reference: if repo has no frontend (no `package.json` with react/vue/next, no mobile folders), **exclude 02,03,04,11**
+4. If request is purely implementation (code change only), **exclude 01,02,03,04,08,11,12** — load only 05,06,07,09,10
+5. Default to smallest mode that covers the request; ask user only if ambiguous
+
+**When to use other skills instead:**
+
+| Task | Use This Skill |
+|------|----------------|
+| Implement feature / fix bug / refactor / debug / test in existing repo | `arm-coding-worker` (focused, no product/design overhead) |
+| Design/audit/implement agent harnesses, persistent execution, recovery | `harness-engineering` |
+| React Native / Expo architecture, scaffold, audit, release | `react-native-architecture` |
+| End-to-end product work (business → design → arch → impl → prod) | `arm-full-cycle` (this skill) |
 
 ## References
 
