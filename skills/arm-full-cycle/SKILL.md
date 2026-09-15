@@ -55,7 +55,7 @@ Before loading references, **detect the minimal scope** from repository evidence
 1. Read repository: `package.json`, `pyproject.toml`, `go.mod`, `Cargo.toml`, `*.sln`, directory structure, existing `.harness/`
 2. Parse user request for keywords: "bug", "fix", "feature", "refactor", "design", "audit", "incident", "backend", "api", "database"
 3. Cross-reference: if repo has no frontend (no `package.json` with react/vue/next, no mobile folders), **exclude 02,03,04,11**
-4. If request is purely implementation (code change only), **exclude 01,02,03,04,08,11,12** — load only 05,06,07,09,10
+4. If request is purely implementation, exclude product, research, and production ceremony that is unrelated to the change. For UI work, keep the relevant Design System and UX references; for backend-only work, load only the affected engineering and validation modules.
 5. Default to smallest mode that covers the request; ask user only if ambiguous
 
 **When to use other skills instead:**
@@ -91,7 +91,7 @@ Read only the modules needed for the current decision. The twelve references are
 Use progressive disclosure: load the smallest set that enables a safe decision, then add modules as the actual scope requires.
 
 - **GREENFIELD:** 01; 02, 03, and 04 when UI is relevant; 05; 06; 07; 08; 09; 10; 11 when applicable; 12.
-- **FEATURE:** 01 for product/domain impact; 05, 06, 07, and 08 when affected; 09 and 10; 02–04 for UI work.
+- **FEATURE:** 01 for product/domain impact; 05, 06, 07, and 08 when affected; 09 and 10; 02–04 for UI work; Design System Engineering when creating or evolving shared UI foundations.
 - **BUGFIX:** 09 and 10; load only the affected domain module. Reproduce, find the root cause, make the smallest repair, and validate at runtime.
 - **REFACTOR / MIGRATION:** 05, 06, 09, 10, and 12 when production risk exists.
 - **ARCHITECTURE:** 01 when needed; 05; 06 when needed; 07; 08; 12 when needed.
@@ -123,6 +123,18 @@ Always check OpenCode first as the preferred verification and recovery coordinat
 ## Skill coordination
 
 `harness-engineering` is the primary doctrine when available; specialist skills augment it and never replace it. Detect availability before invoking any skill.
+
+### Skill discovery and selection
+
+When repository evidence or task scope reveals a missing capability:
+
+1. Inspect installed skills first.
+2. Search trusted catalogs and official repositories.
+3. Compare relevance, maintenance, source trust, overlap, conflicts, permissions, and cost.
+4. Select the smallest specialist that fills the gap.
+5. Read its instructions before use.
+6. Recommend installation; install only when explicitly authorized or a repository policy grants that authority.
+7. Record the selected skill, rejected alternatives, reason, and any limitation.
 
 - `find-skills`: discover a missing specialty only when it materially improves the result; evaluate source, maintenance, overlap, and conflicts.
 - `frontend-design`: visual synthesis and UI/Design System implementation.

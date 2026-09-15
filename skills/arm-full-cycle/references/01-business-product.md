@@ -163,7 +163,7 @@ Install:
 
 npx skills add https://github.com/vercel-labs/skills --skill find-skills
 
-Use find-skills whenever specialized capability could materially improve the result.
+Use find-skills whenever specialized capability could materially improve the result. If it is unavailable, follow the skill-discovery procedure in the main skill: inspect local skills, then trusted catalogs and official repositories, and record the limitation.
 
 Examples:
 
