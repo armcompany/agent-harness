@@ -1,6 +1,6 @@
 ---
 name: arm-full-cycle
-description: Use when starting, resuming, or reviewing product and engineering work spanning business, design, architecture, implementation, validation, security, or production.
+description: Lead a cross-functional product-engineering initiative from problem framing through validated delivery. Use when business, design, architecture, implementation, and release decisions must stay coordinated.
 ---
 
 ```
